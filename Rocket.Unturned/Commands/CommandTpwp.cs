@@ -66,8 +66,8 @@ namespace Rocket.Unturned.Commands
             }
 
             player.Player.teleportToLocationUnsafe(new Vector3(position.x, position.y, position.z), player.Rotation);
-            Core.Logging.Logger.Log(U.Translate("command_tp_teleport_console", player.CharacterName, position.x + "," + position.y + "," + position.z));
-            UnturnedChat.Say(player, U.Translate("command_tp_teleport_private", position.x + "," + position.y + "," + position.z));
+            Core.Logging.Logger.Log(U.Translate("command_tp_teleport_console", player.CharacterName, position.x + ", " + position.y + ", " + position.z));
+            UnturnedChat.Say(player, U.Translate("command_tp_teleport_private", position.x + ", " + position.y + ", " + position.z));
         }
 
         // Copy of Unturned function because its protected

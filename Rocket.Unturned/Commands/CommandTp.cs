@@ -72,6 +72,7 @@ namespace Rocket.Unturned.Commands
             }
             if (x != null && y != null && z != null)
             {
+                //player.Teleport(new Vector3((float)x, (float)y, (float)z), MeasurementTool.angleToByte(player.Rotation));
                 player.Player.teleportToLocationUnsafe(new Vector3((float)x, (float)y, (float)z), MeasurementTool.angleToByte(player.Rotation));
                 Core.Logging.Logger.Log(U.Translate("command_tp_teleport_console", player.CharacterName, (float)x + "," + (float)y + "," + (float)z));
                 UnturnedChat.Say(player, U.Translate("command_tp_teleport_private", (float)x + "," + (float)y + "," + (float)z));
@@ -81,6 +82,7 @@ namespace Rocket.Unturned.Commands
                 UnturnedPlayer otherplayer = UnturnedPlayer.FromName(command[0]);
                 if (otherplayer != null /*&& otherplayer != player*/)
                 {
+                    //player.Teleport(otherplayer);
                     player.Player.teleportToLocationUnsafe(otherplayer.Position, player.Rotation);
                     Core.Logging.Logger.Log(U.Translate("command_tp_teleport_console", player.CharacterName, otherplayer.CharacterName));
                     UnturnedChat.Say(player, U.Translate("command_tp_teleport_private", otherplayer.CharacterName));
@@ -91,6 +93,7 @@ namespace Rocket.Unturned.Commands
                     if (item != null)
                     {
                         Vector3 LocationPosition = item.transform.position + new Vector3(0f, 0.5f, 0f);
+                        //player.Teleport(LocationPosition, MeasurementTool.angleToByte(player.Rotation));
                         player.Player.teleportToLocationUnsafe(LocationPosition, player.Rotation);
                         Core.Logging.Logger.Log(U.Translate("command_tp_teleport_console", player.CharacterName, item.locationName));
                         UnturnedChat.Say(player, U.Translate("command_tp_teleport_private", item.locationName));

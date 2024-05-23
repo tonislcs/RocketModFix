@@ -64,7 +64,7 @@ namespace Rocket.Unturned.Commands
                 UnturnedChat.Say(player, U.Translate("command_tpwp_failed_raycast"));
                 throw new WrongUsageOfCommandException(caller, this);
             }
-
+            //player.Teleport(new Vector3(position.x, position.y, position.z), player.Rotation);
             player.Player.teleportToLocationUnsafe(new Vector3(position.x, position.y, position.z), player.Rotation);
             Core.Logging.Logger.Log(U.Translate("command_tp_teleport_console", player.CharacterName, position.x + ", " + position.y + ", " + position.z));
             UnturnedChat.Say(player, U.Translate("command_tp_teleport_private", position.x + ", " + position.y + ", " + position.z));

@@ -28,7 +28,7 @@ namespace Rocket.Unturned
 {
     public class U : MonoBehaviour, IRocketImplementation, IModuleNexus
     {
-        private static GameObject rocketGameObject; 
+        private static GameObject rocketGameObject;
         public static U Instance;
 
         private static readonly TranslationList defaultTranslations = new TranslationList(){
@@ -97,10 +97,16 @@ namespace Rocket.Unturned
                 { "command_rocket_plugins_unloaded","Unloaded: {0}"},
                 { "command_rocket_plugins_failure","Failure: {0}"},
                 { "command_rocket_plugins_cancelled","Cancelled: {0}"},
-                { "command_rocket_reload_plugin","Reloading {0}"},
+                { "command_rocket_reload_plugin","Reloading... {0}"},
+                { "command_rocket_reloaded_plugin","Reloaded {0}"},
+                { "command_rocket_reload_plugin_error","An error occured while reloading plugin {0}. See logs for more details."},
                 { "command_rocket_not_loaded","The plugin {0} is not loaded"},
-                { "command_rocket_unload_plugin","Unloading {0}"},
-                { "command_rocket_load_plugin","Loading {0}"},
+                { "command_rocket_unloading_plugin","Unloading... {0}"},
+                { "command_rocket_unloading_plugin_error","An error occured while unloading plugin {0}. See logs for more details."},
+                { "command_rocket_unloaded_plugin","Unloaded {0}"},
+                { "command_rocket_load_plugin","Loading... {0}"},
+                { "command_rocket_loaded_plugin_error","Loaded {0}"},
+                { "command_rocket_loaded_plugin","Loaded {0}"},
                 { "command_rocket_already_loaded","The plugin {0} is already loaded"},
                 { "command_rocket_reload","Reloading Rocket"},
                 { "command_rocket_reload_disabled", "Please reload individual plugins instead" },
@@ -120,7 +126,7 @@ namespace Rocket.Unturned
                 { "invalid_character_name","invalid character name"},
                 { "command_not_found","Command not found."}
         };
-         
+
 
         public static XMLFileAsset<UnturnedSettings> Settings;
         public static XMLFileAsset<TranslationList> Translation;
@@ -150,7 +156,7 @@ namespace Rocket.Unturned
 #pragma warning disable CS0618
                     Console = rocketGameObject.AddComponent<UnturnedConsole>();
 #pragma warning restore CS0618
-                
+
                 CommandWindow.Log("Rocket Unturned v" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " for Unturned v" + Provider.APP_VERSION);
 
                 IPluginAdvertising pluginAdvertising = PluginAdvertising.Get();
@@ -168,7 +174,7 @@ namespace Rocket.Unturned
                 };
             }
         }
-        
+
         private void Awake()
         {
             Instance = this;
@@ -228,7 +234,7 @@ namespace Rocket.Unturned
                         }
                         pluginAdvertising.AddPlugins(pluginNames);
                     };
-                    
+
                     SteamGameServer.SetKeyValue("unturned", Provider.APP_VERSION);
                     SteamGameServer.SetKeyValue("rocket", Assembly.GetExecutingAssembly().GetName().Version.ToString());
                 }
@@ -245,7 +251,7 @@ namespace Rocket.Unturned
                 Core.Logging.Logger.LogException(ex);
             }
         }
-        
+
         private void bindDelegates()
         {
             CommandWindow.onCommandWindowInputted += (string text, ref bool shouldExecuteCommand) =>
@@ -266,7 +272,7 @@ namespace Rocket.Unturned
                  UnturnedPlayerEvents.TriggerReceive(channel, steamID, packet, offset, size);
              };
              */
-             
+
             // Replacements for Rocket usage of onTriggerSend:
             SDG.Unturned.Player.onPlayerStatIncremented += UnturnedPlayerEvents.InternalOnPlayerStatIncremented;
             PlayerClothing.OnShirtChanged_Global += UnturnedPlayerEvents.InternalOnShirtChanged;
@@ -331,8 +337,8 @@ namespace Rocket.Unturned
             get
             {
                 return Dedicator.serverID;
-            } 
+            }
         }
     }
-               
+
 }

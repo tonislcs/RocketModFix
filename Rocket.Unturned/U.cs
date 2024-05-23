@@ -28,7 +28,7 @@ namespace Rocket.Unturned
 {
     public class U : MonoBehaviour, IRocketImplementation, IModuleNexus
     {
-        private static GameObject rocketGameObject; 
+        private static GameObject rocketGameObject;
         public static U Instance;
 
         private static readonly TranslationList defaultTranslations = new TranslationList(){
@@ -36,6 +36,12 @@ namespace Rocket.Unturned
                 { "command_generic_invalid_parameter","Invalid parameter"},
                 { "command_generic_target_player_not_found","Target player not found"},
                 { "command_generic_teleport_while_driving_error","You cannot teleport while driving or riding in a vehicle."},
+                { "command_admin_player_invalid","Player {0} is not invalid or not found."},
+                { "command_admin_player_is_admin","Player {0} is an admin."},
+                { "command_admin_success","Successfully admined {0}."},
+                { "command_unadmin_player_invalid","Player {0} is not invalid or not found."},
+                { "command_unadmin_player_is_not_admin","Player {0} is not an admin."},
+                { "command_unadmin_success","Successfully unadmined {0}"},
                 { "command_god_enable_console","{0} enabled Godmode"},
                 { "command_god_enable_private","You can feel the strength now..."},
                 { "command_god_disable_console","{0} disabled Godmode"},
@@ -120,7 +126,7 @@ namespace Rocket.Unturned
                 { "invalid_character_name","invalid character name"},
                 { "command_not_found","Command not found."}
         };
-         
+
 
         public static XMLFileAsset<UnturnedSettings> Settings;
         public static XMLFileAsset<TranslationList> Translation;
@@ -150,7 +156,7 @@ namespace Rocket.Unturned
 #pragma warning disable CS0618
                     Console = rocketGameObject.AddComponent<UnturnedConsole>();
 #pragma warning restore CS0618
-                
+
                 CommandWindow.Log("Rocket Unturned v" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " for Unturned v" + Provider.APP_VERSION);
 
                 IPluginAdvertising pluginAdvertising = PluginAdvertising.Get();
@@ -168,7 +174,7 @@ namespace Rocket.Unturned
                 };
             }
         }
-        
+
         private void Awake()
         {
             Instance = this;
@@ -228,7 +234,7 @@ namespace Rocket.Unturned
                         }
                         pluginAdvertising.AddPlugins(pluginNames);
                     };
-                    
+
                     SteamGameServer.SetKeyValue("unturned", Provider.APP_VERSION);
                     SteamGameServer.SetKeyValue("rocket", Assembly.GetExecutingAssembly().GetName().Version.ToString());
                 }
@@ -245,7 +251,7 @@ namespace Rocket.Unturned
                 Core.Logging.Logger.LogException(ex);
             }
         }
-        
+
         private void bindDelegates()
         {
             CommandWindow.onCommandWindowInputted += (string text, ref bool shouldExecuteCommand) =>
@@ -266,7 +272,7 @@ namespace Rocket.Unturned
                  UnturnedPlayerEvents.TriggerReceive(channel, steamID, packet, offset, size);
              };
              */
-             
+
             // Replacements for Rocket usage of onTriggerSend:
             SDG.Unturned.Player.onPlayerStatIncremented += UnturnedPlayerEvents.InternalOnPlayerStatIncremented;
             PlayerClothing.OnShirtChanged_Global += UnturnedPlayerEvents.InternalOnShirtChanged;
@@ -331,8 +337,8 @@ namespace Rocket.Unturned
             get
             {
                 return Dedicator.serverID;
-            } 
+            }
         }
     }
-               
+
 }

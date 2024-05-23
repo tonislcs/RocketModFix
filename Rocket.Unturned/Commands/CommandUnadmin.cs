@@ -3,6 +3,10 @@ using Rocket.Core;
 using Rocket.Unturned.Chat;
 using Rocket.Unturned.Player;
 using System.Collections.Generic;
+using Rocket.API.Extensions;
+using Rocket.Unturned.Helpers;
+using SDG.Unturned;
+using Steamworks;
 
 namespace Rocket.Unturned.Commands
 {
@@ -28,7 +32,7 @@ namespace Rocket.Unturned.Commands
 
         public string Syntax
         {
-            get { return ""; }
+            get { return "<player>"; }
         }
 
         public List<string> Aliases
@@ -45,18 +49,29 @@ namespace Rocket.Unturned.Commands
         {
             if (!R.Settings.Instance.WebPermissions.Enabled)
             {
-                UnturnedPlayer player = command.GetUnturnedPlayerParameter(0);
-                if (player == null)
+                var playerName = command.GetStringParameter(0);
+                if (playerName == null)
                 {
                     UnturnedChat.Say(caller, U.Translate("command_generic_invalid_parameter"));
                     throw new WrongUsageOfCommandException(caller, this);
                 }
-
-                if (player.IsAdmin)
+                if (RocketUtilities.TryGetSteamIdFromText(playerName, out var steamId) == false)
                 {
-                    UnturnedChat.Say(caller, "Successfully unadmined " + player.CharacterName);
-                    player.Admin(false);
+                    UnturnedChat.Say(caller, U.Translate("command_unadmin_player_invalid", playerName));
+                    throw new WrongUsageOfCommandException(caller, this);
                 }
+                var targetPlayer = UnturnedPlayer.FromCSteamID(steamId!.Value);
+                var targetPlayerName = targetPlayer?.Player != null
+                    ? targetPlayer.CharacterName
+                    : steamId.Value.ToString();
+                if (SteamAdminlist.checkAdmin(steamId!.Value) == false)
+                {
+                    UnturnedChat.Say(caller, U.Translate("command_unadmin_player_is_not_admin", targetPlayerName));
+                    return;
+                }
+
+                SteamAdminlist.unadmin(steamId.Value);
+                UnturnedChat.Say(caller, U.Translate("command_unadmin_success", targetPlayerName));
             }
         }
     }

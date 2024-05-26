@@ -28,7 +28,7 @@ namespace Rocket.Unturned
 {
     public class U : MonoBehaviour, IRocketImplementation, IModuleNexus
     {
-        private static GameObject rocketGameObject; 
+        private static GameObject rocketGameObject;
         public static U Instance;
 
         private static readonly TranslationList defaultTranslations = new TranslationList(){
@@ -84,15 +84,6 @@ namespace Rocket.Unturned
                 { "command_heal_success_me","{0} was successfully healed"},
                 { "command_heal_success_other","You were healed by {0}"},
                 { "command_heal_success","You were healed"},
-                { "command_compass_facing_private","You are facing {0}"},
-                { "command_compass_north","N"},
-                { "command_compass_east","E"},
-                { "command_compass_south","S"},
-                { "command_compass_west","W"},
-                { "command_compass_northwest","NW"},
-                { "command_compass_northeast","NE"},
-                { "command_compass_southwest","SW"},
-                { "command_compass_southeast","SE"},
                 { "command_rocket_plugins_loaded","Loaded: {0}"},
                 { "command_rocket_plugins_unloaded","Unloaded: {0}"},
                 { "command_rocket_plugins_failure","Failure: {0}"},
@@ -120,7 +111,7 @@ namespace Rocket.Unturned
                 { "invalid_character_name","invalid character name"},
                 { "command_not_found","Command not found."}
         };
-         
+
 
         public static XMLFileAsset<UnturnedSettings> Settings;
         public static XMLFileAsset<TranslationList> Translation;
@@ -150,7 +141,7 @@ namespace Rocket.Unturned
 #pragma warning disable CS0618
                     Console = rocketGameObject.AddComponent<UnturnedConsole>();
 #pragma warning restore CS0618
-                
+
                 CommandWindow.Log("Rocket Unturned v" + Assembly.GetExecutingAssembly().GetName().Version.ToString() + " for Unturned v" + Provider.APP_VERSION);
 
                 IPluginAdvertising pluginAdvertising = PluginAdvertising.Get();
@@ -168,7 +159,7 @@ namespace Rocket.Unturned
                 };
             }
         }
-        
+
         private void Awake()
         {
             Instance = this;
@@ -228,7 +219,7 @@ namespace Rocket.Unturned
                         }
                         pluginAdvertising.AddPlugins(pluginNames);
                     };
-                    
+
                     SteamGameServer.SetKeyValue("unturned", Provider.APP_VERSION);
                     SteamGameServer.SetKeyValue("rocket", Assembly.GetExecutingAssembly().GetName().Version.ToString());
                 }
@@ -245,7 +236,7 @@ namespace Rocket.Unturned
                 Core.Logging.Logger.LogException(ex);
             }
         }
-        
+
         private void bindDelegates()
         {
             CommandWindow.onCommandWindowInputted += (string text, ref bool shouldExecuteCommand) =>
@@ -266,7 +257,7 @@ namespace Rocket.Unturned
                  UnturnedPlayerEvents.TriggerReceive(channel, steamID, packet, offset, size);
              };
              */
-             
+
             // Replacements for Rocket usage of onTriggerSend:
             SDG.Unturned.Player.onPlayerStatIncremented += UnturnedPlayerEvents.InternalOnPlayerStatIncremented;
             PlayerClothing.OnShirtChanged_Global += UnturnedPlayerEvents.InternalOnShirtChanged;
@@ -331,8 +322,8 @@ namespace Rocket.Unturned
             get
             {
                 return Dedicator.serverID;
-            } 
+            }
         }
     }
-               
+
 }

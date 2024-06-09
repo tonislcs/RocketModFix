@@ -94,7 +94,7 @@ namespace Rocket.Unturned.Player
                 }
 
                 var groups = (List<RocketPermissionsGroup>)R.Permissions.GetGroups(unturnedPlayer, false).Where(g => g.Color != null && g.Color != "white");
-                RocketPermissionsGroup group;
+                RocketPermissionsGroup group = groups.FirstOrDefault();
                 if (U.Settings.Instance.EnableUnturnedPlayerColorFromPriorityGroup)
                 {
                     //group = groups.First(g => g.Priority == groups.Max(g => g.Priority));
@@ -107,10 +107,6 @@ namespace Rocket.Unturned.Player
                             group = item;
                         }
                     }
-                }
-                else
-                {
-                    group = groups.FirstOrDefault();
                 }
 
                 string color = "";

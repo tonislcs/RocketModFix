@@ -54,6 +54,8 @@ namespace Rocket.Unturned.Serialisation
 
         public bool EnableVehicleBlacklist;
 
+        public bool EnableUnturnedPlayerColorFromPriorityGroup;
+
 
         public void LoadDefaults()
         {
@@ -66,6 +68,7 @@ namespace Rocket.Unturned.Serialisation
             EnableItemSpawnLimit = false;
             MaxSpawnAmount = 10;
             EnableVehicleBlacklist = false;
+            EnableUnturnedPlayerColorFromPriorityGroup = false;
         }
     }
 }

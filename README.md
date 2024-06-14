@@ -76,6 +76,28 @@ Before you dive into making changes, consider creating an [issue][issues_url] or
 - Collaborative Problem Solving: Other contributors might have valuable insights or alternative solutions. Discussing changes beforehand can lead to better implementations.
 - Save Your Time: Avoid working on updates that might not align with the project's direction. Consult with others to ensure your efforts are fruitful.
 
+### Key Guidelines for Contributors
+
+Follow these rules to make our work smoother and faster:
+
+1. **Check for Compatibility**: 
+   - Does your change break backward compatibility? 
+   - If it does, try to keep it compatible with old versions.
+
+2. **Ensure Broad Usability**: 
+   - Will your changes work with other versions of Rocket or older versions, even if RocketModFix is not installed?
+   - If not, your change may not be accepted as it could cause problems.
+
+3. **Test Your Changes**:
+   - Have you tested your change locally or in a test environment?
+   - If not, make sure to test it to confirm it works as expected.
+
+4. **Keep Things Simple**:
+	- Do you keep things simple?
+	- If not, try to keep things simple, for example: "Don't try to make things/code unique, hard, complex, and etc, use and do simple and working solutions for the issue, no need to show yourself as a hulk.".
+
+Keep these points in mind to help everyone use RocketModFix without issues.
+
 ## NuGet Packages
 
 ### Redist

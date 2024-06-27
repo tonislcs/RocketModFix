@@ -93,7 +93,22 @@ namespace Rocket.Unturned.Player
                     return Palette.ADMIN;
                 }
 
-                RocketPermissionsGroup group = R.Permissions.GetGroups(this,false).Where(g => g.Color != null && g.Color != "white").FirstOrDefault();
+                var groups = R.Permissions.GetGroups(this, false).Where(g => g.Color != null && g.Color != "white").ToList();
+                var group = groups.FirstOrDefault();
+                if (U.Settings.Instance.EnableUnturnedPlayerColorFromPriorityGroup)
+                {
+                    //group = groups.First(g => g.Priority == groups.Max(g => g.Priority));
+                    var priority = short.MaxValue;
+                    foreach (var item in groups)
+                    {
+                        if (item.Priority < priority)
+                        {
+                            priority = item.Priority;
+                            group = item;
+                        }
+                    }
+                }
+                
                 string color = "";
                 if (group != null) color = group.Color;
                 return UnturnedChat.GetColorFromName(color, Palette.COLOR_W);

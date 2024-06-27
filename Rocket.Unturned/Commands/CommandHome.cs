@@ -4,6 +4,7 @@ using Rocket.Unturned.Player;
 using SDG.Unturned;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Rocket.Unturned.Commands
 {
@@ -24,7 +25,7 @@ namespace Rocket.Unturned.Commands
 
         public string Help
         {
-            get { return "Teleports you to your last bed";}
+            get { return "Teleports you to your last bed"; }
         }
 
         public string Syntax
@@ -54,21 +55,26 @@ namespace Rocket.Unturned.Commands
             }
             else
             {
-                if (player.Stance == EPlayerStance.DRIVING || player.Stance == EPlayerStance.SITTING)
-                {
-                    UnturnedChat.Say(caller, U.Translate("command_generic_teleport_while_driving_error"));
-                    throw new WrongUsageOfCommandException(caller, this);
-                }
-                else
-                {
-                    pos.y += 0.5f; // Respawn uses this offset.
-                    float yaw = MeasurementTool.byteToAngle(rot);
-                    bool teleportSuccessful = player.Player.teleportToLocation(pos, yaw);
-                    if(!teleportSuccessful)
-                    {
-                        UnturnedChat.Say(caller, U.Translate("command_bed_obstructed"));
-                    }
-                }
+                //if (player.Stance == EPlayerStance.DRIVING || player.Stance == EPlayerStance.SITTING)
+                //{
+                //    UnturnedChat.Say(caller, U.Translate("command_generic_teleport_while_driving_error"));
+                //    throw new WrongUsageOfCommandException(caller, this);
+                //}
+                //else
+                //{
+                pos.y += 0.5f; // Respawn uses this offset.
+
+                float yaw = MeasurementTool.byteToAngle(rot);
+
+                //bool teleportSuccessful = player.Player.teleportToLocation(pos, yaw);
+
+                player.Player.teleportToLocationUnsafe(pos, yaw);
+
+                //if (!teleportSuccessful)
+                //{
+                //    UnturnedChat.Say(caller, U.Translate("command_bed_obstructed"));
+                //}
+                //}
             }
 
         }

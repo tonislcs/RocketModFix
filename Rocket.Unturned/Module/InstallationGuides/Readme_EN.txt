@@ -1,8 +1,11 @@
 RocketModFix for Unturned
 -------------------------
 
-https://github.com/RocketModFix/RocketModFix
+GitHub: https://github.com/RocketModFix/RocketModFix
+
 For latest downloads, visit: https://github.com/RocketModFix/RocketModFix/releases.
+
+Join our Discord: https://discord.gg/z6VM7taWeG
 
 Installation
 ------------

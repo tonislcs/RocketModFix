@@ -31,6 +31,7 @@ You can still use old plugins without any changes/recompilation/updates.
 - [ ] RocketMod Fixes:
 	- [x] Fix UnturnedPlayer.SteamProfile, current implementation cause so many lags (fixed, but still requires fixes). 
 	- [x] Fix UnturnedPlayerComponent is not being added and removed automatically.
+	- [x] /admin /unadmin doesn't work when use offline player (now it possible to use steam id of the offline player).
 	- [ ] Assembly Resolve fixes (don't spam with not found library or make a option to disable it, load all libraries at rocketmod start instead of searching for them only on OnAssemblyResolve)
 	- [ ] Commands fixes:
 		- [ ] Fix /vanish.

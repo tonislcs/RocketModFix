@@ -3,6 +3,9 @@ using Rocket.Core;
 using Rocket.Unturned.Chat;
 using Rocket.Unturned.Player;
 using System.Collections.Generic;
+using Rocket.API.Extensions;
+using Rocket.Unturned.Helpers;
+using SDG.Unturned;
 
 namespace Rocket.Unturned.Commands
 {
@@ -28,7 +31,7 @@ namespace Rocket.Unturned.Commands
 
         public string Syntax
         {
-            get { return ""; }
+            get { return "<player>"; }
         }
 
         public List<string> Permissions
@@ -48,19 +51,29 @@ namespace Rocket.Unturned.Commands
         {
             if (!R.Settings.Instance.WebPermissions.Enabled)
             {
-                UnturnedPlayer player = command.GetUnturnedPlayerParameter(0);
-                if (player == null)
+                var playerName = command.GetStringParameter(0);
+                if (playerName == null)
                 {
                     UnturnedChat.Say(caller, U.Translate("command_generic_invalid_parameter"));
-                    throw new WrongUsageOfCommandException(caller,this);
+                    throw new WrongUsageOfCommandException(caller, this);
+                }
+                if (RocketUtilities.TryGetSteamIdFromText(playerName, out var steamId) == false)
+                {
+                    UnturnedChat.Say(caller, U.Translate("command_admin_player_invalid", playerName));
+                    throw new WrongUsageOfCommandException(caller, this);
+                }
+                var targetPlayer = UnturnedPlayer.FromCSteamID(steamId!.Value);
+                var targetPlayerName = targetPlayer?.Player != null
+                    ? targetPlayer.CharacterName
+                    : steamId.Value.ToString();
+                if (SteamAdminlist.checkAdmin(steamId!.Value))
+                {
+                    UnturnedChat.Say(caller, U.Translate("command_admin_player_is_admin", targetPlayerName));
+                    return;
                 }
 
-                if (!player.IsAdmin)
-                {
-                    UnturnedChat.Say(caller, "Successfully admined "+player.CharacterName);
-                    player.Admin(true);
-                }
-            }   
+                UnturnedChat.Say(caller, U.Translate("command_admin_success", targetPlayerName));
+            }
         }
     }
 }

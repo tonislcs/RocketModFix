@@ -82,11 +82,11 @@ Follow these rules to make our work smoother and faster:
 
 1. **Check for Compatibility**: 
    - Does your change break backward compatibility? 
-   - If it does, try to keep it compatible with old versions.
+   - If it does, make sure to keep it compatible with old versions.
 
 2. **Ensure Broad Usability**: 
-   - Will your changes work with other versions of Rocket or older versions, even if RocketModFix is not installed?
-   - If not, your change may not be accepted as it could cause problems.
+   - Will your changes work with other versions of Rocket or older versions, or if other Rocket for example [LDM][ldm_github_repository] installed but your edited version of RocketModFix is not installed?
+   - If not, your change may not be accepted as it could problems such as breaking changes.
 
 3. **Test Your Changes**:
    - Have you tested your change locally or in a test environment?
@@ -161,3 +161,4 @@ On the 2nd of June 2020 fr34kyn01535 requested the fork be rebranded to help dis
 [discordserver_url]: https://discord.gg/z6VM7taWeG 
 
 [openmod_github_repository]: https://github.com/openmod/openmod
+[ldm_github_repository]: https://github.com/SmartlyDressedGames/Legally-Distinct-Missile

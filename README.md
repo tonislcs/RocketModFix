@@ -51,11 +51,14 @@ After plan is finished -> Add new plans, keep coding, and don't forget to approv
 
 ## Installation
 
-1. Stop the server (if running).
-1. Install latest RocketModFix Module [here](https://github.com/RocketModFix/RocketModFix/releases).
-2. Open Dropdown button Assets (if its not open).
-3. Click on `Rocket.Unturned.Module.zip` to download.
-4. Keep `Readme.txt` instruction file inside of the installed `Rocket.Unturned.Module.zip` archive.
+1. **Stop the Server**: If your server is running, stop it.
+2. **Remove Old Rocket**: Delete the entire `Rocket.Unturned` folder located in `Modules` (if it exists).
+3. **Download the Latest RocketModFix**: Go to the [RocketModFix releases page](https://github.com/RocketModFix/RocketModFix/releases).
+4. **Access the Assets**: Open the "Assets" section if it's not already expanded.
+5. **Download the Module**: Click `Rocket.Unturned.Module.zip` to download the latest module.
+6. **Final**: Extract the downloaded archive, open the `Rocket.Unturned.Module` folder, and copy the `Rocket.Unturned` folder to `Modules` (copy the folder, not it's content, and if its asks to Replace the existing files then press to replace them).
+
+Contact in our discord if you have any problems. Just in case you can also read `Readme_EN.txt` or `Readme_RU.txt` inside of the installed Module.
 
 ## Discord
 

@@ -63,8 +63,9 @@ namespace Rocket.Unturned.Commands
                     throw new WrongUsageOfCommandException(caller, this);
                 }
 
-                Asset[] assets = Assets.find(EAssetType.VEHICLE);
-                foreach (VehicleAsset ia in assets.Cast<VehicleAsset>())
+                List<VehicleAsset> assets = new List<VehicleAsset>();
+                Assets.find(assets);
+                foreach (VehicleAsset ia in assets)
                 {
                     if (ia != null && ia.vehicleName != null && ia.vehicleName.ToLower().Contains(itemString.ToLower()))
                     {
@@ -80,6 +81,10 @@ namespace Rocket.Unturned.Commands
             }
 
             Asset a = Assets.find(EAssetType.VEHICLE, id.Value);
+            if (a is VehicleRedirectorAsset ra)
+            {
+                a = ra.TargetVehicle.Find();
+            }
             if (a == null)
             {
                 UnturnedChat.Say(caller, U.Translate("command_generic_invalid_parameter"));

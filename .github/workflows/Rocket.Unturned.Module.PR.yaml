@@ -14,9 +14,9 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-dotnet@v3
+      - uses: actions/setup-dotnet@v4
         name: Setup .NET
         with:
           dotnet-version: 7.x
@@ -24,11 +24,11 @@ jobs:
       - name: Build
         run: dotnet build ./Rocket.Unturned/Rocket.Unturned.csproj /p:RocketModVersion=0.0.0-preview /p:CreateRocketModUnturnedModuleArtifacts=true -c Release -f net461
 
-      - run: echo "::set-output name=commit_hash::$(git rev-parse --short ${{ github.sha }})"
+      - run: echo "name=commit_hash::$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
         id: commit_hash
 
       - name: Upload Rocket.Unturned.Module Artifacts 
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Rocket.Unturned.Module.Build-${{ steps.commit_hash.outputs.commit_hash }}
           path: "./Rocket.Unturned/Rocket.Unturned.Module.zip"

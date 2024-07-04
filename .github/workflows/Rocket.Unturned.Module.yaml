@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: actions/setup-dotnet@v3
         name: Setup .NET
@@ -22,7 +22,7 @@ jobs:
         run: dotnet build ./Rocket.Unturned/Rocket.Unturned.csproj /p:RocketModVersion=${{ github.ref_name }} /p:CreateRocketModUnturnedModuleArtifacts=true -c Release -f net461
 
       - name: Upload build
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: build
           path: "./Rocket.Unturned/Rocket.Unturned.Module.zip"
@@ -34,10 +34,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download build
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: build
           path: ./build/

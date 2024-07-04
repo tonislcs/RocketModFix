@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: dotnet build ./Rocket.Unturned/Rocket.Unturned.csproj /p:RocketModVersion=0.0.0-preview /p:CreateRocketModUnturnedModuleArtifacts=true -c Release -f net461
 
-      - run: echo "::set-output name=commit_hash::$(git rev-parse --short ${{ github.sha }})"
+      - run: echo "name=commit_hash::$(git rev-parse --short ${{ github.sha }})" >> $GITHUB_OUTPUT
         id: commit_hash
 
       - name: Upload Rocket.Unturned.Module Artifacts 

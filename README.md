@@ -33,6 +33,7 @@ You can still use old plugins without any changes/recompilation/updates.
 	- [x] Fix UnturnedPlayerComponent is not being added and removed automatically.
 	- [x] /admin /unadmin doesn't work when use offline player (now it possible to use steam id of the offline player).
 	- [ ] Assembly Resolve fixes (don't spam with not found library or make a option to disable it, load all libraries at rocketmod start instead of searching for them only on OnAssemblyResolve)
+	- [x] Fix problem when TaskDispatcher is not calling an action (example: when some plugins queue a player which connected to the server the action might not be called = bypassed checks/bans etc).
 	- [ ] Commands fixes:
 		- [ ] Fix /vanish.
 		- [x] Fix /god. (oxygen isn't fixed)

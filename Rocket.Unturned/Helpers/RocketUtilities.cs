@@ -3,7 +3,7 @@ using Steamworks;
 
 namespace Rocket.Unturned.Helpers;
 
-public static class RocketUtilities
+internal static class RocketUtilities
 {
     public static bool TryGetSteamIdFromText(string text, out CSteamID? steamId)
     {

@@ -1,0 +1,25 @@
+name: RocketModFix.Build
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/RocketModFix.Build'
+      - 'Rocket/**'
+      - 'Rocket.Unturned/**'
+
+jobs:
+  Build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        name: Setup .NET
+        with:
+          dotnet-version: 8.x
+
+      - name: Build
+        run: dotnet build ./Rocket.Unturned/Rocket.Unturned.csproj /p:CreateRocketModUnturnedModuleArtifacts=false -c Release -f net461

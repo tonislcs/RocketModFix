@@ -89,7 +89,10 @@ namespace Rocket.Unturned.Commands
                 }
                 else
                 {
-                    LocationDevkitNode item = LocationDevkitNodeSystem.Get().GetAllNodes().Where(n => n.locationName.IndexOf(command[0]) != -1).FirstOrDefault();
+                    var item = LocationDevkitNodeSystem
+                        .Get()
+                        .GetAllNodes()
+                        .FirstOrDefault(x => NameTool.checkNames(command[0], x.locationName));
                     if (item != null)
                     {
                         Vector3 LocationPosition = item.transform.position + new Vector3(0f, 0.5f, 0f);

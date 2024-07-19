@@ -1,10 +1,10 @@
-name: Artifacts for the RocketMod.Unturned Module on PR
+name: RocketModFix.PullRequest.Artifacts
 
 on:
   pull_request:
     paths:
-      - '.github/workflows/Rocket.Unturned.Module.PR.yaml'
-      - '.github/workflows/Rocket.Unturned.Module.yaml'
+      - '.github/workflows/RocketModFix.PullRequest.Artifacts.yaml'
+      - '.github/workflows/RocketModFix.Release.yaml'
       - 'Rocket/**'
       - 'Rocket.Unturned/**'
 

@@ -1,4 +1,4 @@
-name: NuGet Package for Rocket.Core
+name: Rocket.Core
 
 on:
   create:

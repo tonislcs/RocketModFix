@@ -1,4 +1,4 @@
-name: NuGet Package for Rocket.API
+name: Rocket.API
 
 on:
   create:

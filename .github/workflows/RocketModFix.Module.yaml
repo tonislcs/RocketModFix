@@ -41,6 +41,12 @@ jobs:
       - name: Install zip
         run: sudo apt-get install zip
 
+      - name: Verify build output
+        run: ls -R ./Rocket.Unturned/bin/Release/net461/
+
+      - name: Verify build output #2
+        run: ls -R ./Rocket.Unturned/bin/Release/net461/
+
       - name: Zip artifacts
         run: "cd ./Rocket.Unturned/bin/Release/net461/Rocket.Unturned && zip -qq -r ./Rocket.Unturned.Module.zip *"
 

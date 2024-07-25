@@ -42,10 +42,10 @@ jobs:
         run: sudo apt-get install zip
 
       - name: Zip artifacts
-        run: "cd ./Rocket.Unturned/bin/Release/net461/Rocket.Unturned/ && zip -qq -r ./Rocket.Unturned.Module.zip *"
+        run: "cd ./Rocket.Unturned/bin/Release/net461/Rocket.Unturned && zip -qq -r ./Rocket.Unturned.Module.zip *"
 
       - name: Upload build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: Rocket.Unturned.Module.zip
           path: "./Rocket.Unturned/bin/Release/net461/Rocket.Unturned/Rocket.Unturned.Module.zip"

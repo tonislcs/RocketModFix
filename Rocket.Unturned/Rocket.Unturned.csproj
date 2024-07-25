@@ -21,7 +21,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="RocketModModuleArtifacts" AfterTargets="PostBuildEvent" Condition=" '$(CreateRocketModUnturnedModuleArtifacts)' == 'true' ">
+  <Target Name="RocketModModuleArtifacts" AfterTargets="PostBuildEvent">
 
     <ItemGroup>
       <RocketModFiles Include="$(OutDir)*Rocket*.dll"/>
@@ -38,13 +38,6 @@
     <Copy SourceFiles="@(RocketModFiles)" DestinationFolder="$(RocketUnturnedOutputDirectory)"/>
     <Copy SourceFiles="@(RocketModModuleFiles)" DestinationFolder="$(RocketUnturnedOutputDirectory)"/>
     <Copy SourceFiles="@(RocketModInstallationGuides)" DestinationFolder="$(RocketUnturnedOutputDirectory)\.."/>
-
-    <Delete Files="Rocket.Unturned.Module.zip"/>
-
-    <ZipDirectory
-      SourceDirectory="$(RocketUnturnedOutputDirectory)\.."
-      DestinationFile="Rocket.Unturned.Module.zip"
-      Overwrite="true"/>
 
   </Target>
 

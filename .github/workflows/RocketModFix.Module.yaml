@@ -41,20 +41,14 @@ jobs:
       - name: Install zip
         run: sudo apt-get install zip
 
-      - name: Verify build output
-        run: ls -R ./Rocket.Unturned/bin/Release/net461/
-
-      - name: Verify build output #2
-        run: ls -R ./Rocket.Unturned/bin/Release/net461/
-
       - name: Zip artifacts
-        run: "cd ./Rocket.Unturned/bin/Release/net461/Rocket.Unturned && zip -qq -r ./Rocket.Unturned.Module.zip *"
+        run: "cd ./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned && zip -qq -r ./Rocket.Unturned.Module.zip *"
 
       - name: Upload build
         uses: actions/upload-artifact@v3
         with:
           name: Rocket.Unturned.Module.zip
-          path: "./Rocket.Unturned/bin/Release/net461/Rocket.Unturned/Rocket.Unturned.Module.zip"
+          path: "./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned/Rocket.Unturned.Module.zip"
           if-no-files-found: error
 
       - name: Create version
@@ -79,7 +73,7 @@ jobs:
         with:
           name: RocketModFix Release v${{ steps.get-version.outputs.version }}
           tag: v${{ steps.get-version.outputs.version }}
-          artifacts: "./Rocket.Unturned/bin/Release/net461/Rocket.Unturned/Rocket.Unturned.Module.zip"
+          artifacts: "./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned/Rocket.Unturned.Module.zip"
           token: ${{ secrets.PAT }}
           prerelease: ${{ steps.check-prerelease.outputs.is_prerelease }}
           allowUpdates: true

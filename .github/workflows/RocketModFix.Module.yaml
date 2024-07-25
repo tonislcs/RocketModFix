@@ -1,0 +1,80 @@
+name: RocketModFix.Module
+
+on:
+  create:
+    tags:
+      - "*"
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/RocketModFix.Module.yaml'
+      - 'Rocket/**'
+      - 'Rocket.Unturned/**'
+  pull_request:
+    paths:
+      - '.github/workflows/RocketModFix.Module.yaml'
+      - 'Rocket/**'
+      - 'Rocket.Unturned/**'
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        name: Setup .NET
+        with:
+          dotnet-version: 8.x
+
+      - name: Build Project
+        uses: ./.github/actions/project-build
+        id: project-build
+        with:
+          project_path: Rocket.Unturned/Rocket.Unturned.csproj
+          nuget_push: false
+          target_framework: net461
+          github_token: ${{ secrets.PAT }}
+
+      - name: Install zip
+        run: sudo apt-get install zip
+
+      - name: Zip artifacts
+        run: "cd ./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned && zip -qq -r ./Rocket.Unturned.Module.zip *"
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rocket.Unturned.Module.zip
+          path: "./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned/Rocket.Unturned.Module.zip"
+          if-no-files-found: error
+
+      - name: Create version
+        if: github.event_name == 'create' && github.event.ref_type == 'tag'
+        id: get-version
+        run: echo "version=$(git describe --tags `git rev-list --tags --max-count=1`)" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Check Prerelease
+        if: github.event_name == 'create' && github.event.ref_type == 'tag'
+        id: check-prerelease
+        run: "if ${{ contains(steps.get-version.outputs.version, '-') }}; then
+                echo is_prerelease=true >> $GITHUB_OUTPUT;
+              else
+                echo is_prerelease=false >> $GITHUB_OUTPUT;
+              fi"
+        shell: bash
+
+      - name: Create Release
+        if: github.event_name == 'create' && github.event.ref_type == 'tag'
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          name: RocketModFix Release v${{ steps.get-version.outputs.version }}
+          tag: v${{ steps.get-version.outputs.version }}
+          artifacts: "./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned/Rocket.Unturned.Module.zip"
+          token: ${{ secrets.PAT }}
+          prerelease: ${{ steps.check-prerelease.outputs.is_prerelease }}
+          allowUpdates: true
+          generateReleaseNotes: true

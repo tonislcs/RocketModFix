@@ -56,20 +56,21 @@ public class CommandSaveLogs : IRocketCommand
         var serverDirectory = Path.Combine(workingDirectory, "Servers", serverId);
 
         var saveLogsDirectory = Path.Combine(serverDirectory, "SaveLogs");
-        if (Directory.Exists(saveLogsDirectory) == false)
-        {
-            Directory.CreateDirectory(saveLogsDirectory);
-        }
 
         var logId = $"savelogs-{((int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds).ToString()}";
         var saveLogDirectory = Path.Combine(saveLogsDirectory, logId);
-        Directory.CreateDirectory(saveLogDirectory);
 
         var logFiles = GetLogFiles();
         if (logFiles.Count == 0)
         {
             UnturnedChat.Say(caller, "No one log were found.", Color.red);
             return;
+        }
+
+        Directory.CreateDirectory(saveLogDirectory);
+        if (Directory.Exists(saveLogsDirectory) == false)
+        {
+            Directory.CreateDirectory(saveLogsDirectory);
         }
 
         foreach (var logFilePath in logFiles)
@@ -80,8 +81,15 @@ public class CommandSaveLogs : IRocketCommand
                 continue;
             }
 
-            File.Copy(logFilePath, Path.Combine(saveLogDirectory, Path.GetFileName(logFilePath)));
-            UnturnedChat.Say($"Saved {logFilePath} to {saveLogDirectory}", Color.yellow);
+            try
+            {
+                File.Copy(logFilePath, Path.Combine(saveLogDirectory, Path.GetFileName(logFilePath)));
+                UnturnedChat.Say($"Saved {logFilePath} to {saveLogDirectory}", Color.yellow);
+            }
+            catch (Exception ex)
+            {
+                RocketLogger.LogException(ex, $"An error occured while saving {logFilePath} to {saveLogDirectory}");
+            }
         }
 
         var logArchivePath = Path.Combine(saveLogsDirectory, $"{logId}.zip");

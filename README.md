@@ -43,6 +43,7 @@ You can still use old plugins without any changes/recompilation/updates.
 	- [x] Commands:
 		- [x] /position /pos (current position of the player).
 		- [x] /tpwp (improved version of /tp wp).
+		- [x] /savelogs (a fast way for sending logs to plugin developer or whatever).
 - [ ] Remove Features:
 	- [x] Command /compass
 - [x] Gather a Team with a direct access to the repo edit without admins help. (We still gather a team)

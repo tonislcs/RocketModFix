@@ -27,6 +27,7 @@
       <RocketModFiles Include="$(OutDir)*Rocket*.dll"/>
       <RocketModModuleFiles Include="Module/Rocket.Unturned/*"/>
       <RocketModInstallationGuides Include="Module/InstallationGuides/*.txt"/>
+      <RocketModRuntimeLibs Include="Module/RuntimeLibs/*.dll"/>
     </ItemGroup>
 
     <PropertyGroup>
@@ -35,9 +36,10 @@
 
     <MakeDir Directories="$(RocketUnturnedOutputDirectory)"/>
 
+    <Copy SourceFiles="@(RocketModInstallationGuides)" DestinationFolder="$(RocketUnturnedOutputDirectory)\.."/>
     <Copy SourceFiles="@(RocketModFiles)" DestinationFolder="$(RocketUnturnedOutputDirectory)"/>
     <Copy SourceFiles="@(RocketModModuleFiles)" DestinationFolder="$(RocketUnturnedOutputDirectory)"/>
-    <Copy SourceFiles="@(RocketModInstallationGuides)" DestinationFolder="$(RocketUnturnedOutputDirectory)\.."/>
+    <Copy SourceFiles="@(RocketModRuntimeLibs)" DestinationFolder="$(RocketUnturnedOutputDirectory)"/>
 
   </Target>
 

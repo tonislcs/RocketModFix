@@ -10,7 +10,7 @@
     <PackageReference Include="RocketModFix.UnityEngine.Redist" Version="2021.3.28.1">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="RocketModFix.Unturned.Redist.Server" Version="3.24.4.1">
+    <PackageReference Include="RocketModFix.Unturned.Redist.Server" Version="3.24.5">
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
   </ItemGroup>

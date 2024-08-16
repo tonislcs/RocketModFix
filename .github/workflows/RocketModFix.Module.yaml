@@ -35,7 +35,7 @@ jobs:
         uses: ./.github/actions/project-build
         id: project-build
         with:
-          project_path: Rocket.Unturned/Rocket.Unturned.csproj
+          project_path: Rocket.Unturned
           nuget_push: true
           target_framework: net461
           github_token: ${{ secrets.PAT }}

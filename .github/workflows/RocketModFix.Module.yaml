@@ -40,12 +40,6 @@ jobs:
           target_framework: net461
           github_token: ${{ secrets.PAT }}
 
-      - name: Debug Log: List NuGet Packages
-        run: |
-          echo "Listing NuGet packages found:"
-          find ./Rocket.Unturned/bin/Release -type f -name "*.nupkg" -exec echo "Found package: {}" \;
-
-
       - name: Install zip
         run: sudo apt-get install zip
 

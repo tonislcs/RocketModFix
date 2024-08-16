@@ -10,7 +10,7 @@
     <InformationalVersion>$(RocketModVersion)</InformationalVersion>
     <Copyright>RocketModFix and their contributors</Copyright>
     <RepositoryUrl>https://github.com/RocketModFix/RocketModFix</RepositoryUrl>
-    <LangVersion>11</LangVersion>
+    <LangVersion>preview</LangVersion>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
     <Prefer32Bit>false</Prefer32Bit>

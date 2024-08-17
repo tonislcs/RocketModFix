@@ -79,11 +79,6 @@ runs:
         PROJECT_PATH: ${{ inputs.project_path }} # Used by commands in `common-commands` step
       shell: bash
 
-    - name: List Build Directory
-      run: |
-        ls -R ${{ inputs.project_path }}/
-      shell: bash
-
     # Push to GitHub packages on each commit and release
     - name: Push to NuGet (Nightly)
       if: |

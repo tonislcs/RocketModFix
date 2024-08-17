@@ -37,7 +37,7 @@ jobs:
         with:
           project_path: Rocket.Unturned
           nuget_key: ${{ secrets.NUGET_DEPLOY_KEY }}
-          nuget_push: true
+          nuget_push: false
           github_token: ${{ secrets.PAT }}
 
       - name: Install zip

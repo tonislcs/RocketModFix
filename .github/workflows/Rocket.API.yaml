@@ -36,4 +36,4 @@ jobs:
         project_path: Rocket/Rocket.API
         github_token: ${{ secrets.PAT }}
         nuget_key: ${{ secrets.NUGET_DEPLOY_KEY }}
-        nuget_push: false
+        nuget_push: true

@@ -84,7 +84,7 @@ runs:
 
     - name: List Build Directory
       run: |
-        ls -R ${{ inputs.project_path }}/bin/Release/
+        ls -R ${{ inputs.project_path }}/
       shell: bash
 
     # Push to GitHub packages on each commit and release

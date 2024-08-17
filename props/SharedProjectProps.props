@@ -5,9 +5,9 @@
     <RepositoryType>git</RepositoryType>
     <Authors>RocketModFix</Authors>
     <Company>RocketModFix</Company>
-    <RocketModVersion>0.0.0</RocketModVersion>
-    <Version>$(RocketModVersion)</Version>
-    <InformationalVersion>$(RocketModVersion)</InformationalVersion>
+    <RocketModFixVersion>0.0.0</RocketModFixVersion>
+    <Version>$(RocketModFixVersion)</Version>
+    <InformationalVersion>$(RocketModFixVersion)</InformationalVersion>
     <Copyright>RocketModFix and their contributors</Copyright>
     <RepositoryUrl>https://github.com/RocketModFix/RocketModFix</RepositoryUrl>
     <LangVersion>preview</LangVersion>
@@ -24,7 +24,7 @@
     <IncludeSymbols>true</IncludeSymbols>
     <PackageProjectUrl>https://github.com/RocketModFix/RocketModFix</PackageProjectUrl>
     <PackageOwners>RocketModFix;</PackageOwners>
-    <PackageVersion>$(RocketModVersion)</PackageVersion>
+    <PackageVersion>$(RocketModFixVersion)</PackageVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>

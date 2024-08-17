@@ -36,7 +36,6 @@ jobs:
         id: project-build
         with:
           project_path: Rocket.Unturned
-          target_framework: net461
           nuget_key: ${{ secrets.NUGET_DEPLOY_KEY }}
           nuget_push: true
           github_token: ${{ secrets.PAT }}

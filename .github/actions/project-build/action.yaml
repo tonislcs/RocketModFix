@@ -51,30 +51,14 @@ runs:
     - name: Common commands
       id: common-commands
       run: |
-        # Define variables for common parameters
         CONFIGURATION="Release"
         RUNTIME="${{ inputs.runtime_version }}"
         TARGET_FRAMEWORK="${{ inputs.target_framework }}"
         PROJECT_PATH="$PROJECT_PATH"
-    
-        # Define functions for each command
-        function dotnet_restore {
-          dotnet restore "$PROJECT_PATH" --runtime "$RUNTIME" -p:Configuration="$CONFIGURATION" -p:TargetFramework="$TARGET_FRAMEWORK"
-        }
-    
-        function dotnet_build {
-          VERSION="${{ steps.get-version.outputs.version }}"
-          dotnet build "$PROJECT_PATH" --configuration "$CONFIGURATION" --no-restore --runtime "$RUNTIME" -p:TargetFramework="$TARGET_FRAMEWORK" -p:RocketModFixVersion="$VERSION"
-        }
-    
-        function dotnet_test {
-          dotnet test "$PROJECT_PATH" --configuration "$CONFIGURATION" --no-restore --no-build --runtime "$RUNTIME" -p:TargetFramework="$TARGET_FRAMEWORK"
-        }
-    
-        # Echo functions to be used as commands
-        echo "dotnet-restore=dotnet_restore" >> $GITHUB_OUTPUT
-        echo "dotnet-build=dotnet_build" >> $GITHUB_OUTPUT
-        echo "dotnet-test=dotnet_test" >> $GITHUB_OUTPUT
+
+        echo "dotnet-restore=dotnet restore \$PROJECT_PATH --runtime ${{ inputs.runtime_version }} --configuration "$CONFIGURATION" -p:TargetFramework="$TARGET_FRAMEWORK"" >> $GITHUB_OUTPUT
+        echo "dotnet-build=dotnet build \$PROJECT_PATH --configuration "$CONFIGURATION" --no-restore --runtime "$RUNTIME" -p:TargetFramework="$TARGET_FRAMEWORK" -p:RocketModFixVersion=${{ steps.get-version.outputs.version }}" >> $GITHUB_OUTPUT
+        echo "dotnet-test=dotnet test \$PROJECT_PATH --configuration "$CONFIGURATION" --no-restore --no-build --runtime ${{ inputs.runtime_version }} -p:TargetFramework="$TARGET_FRAMEWORK"" >> $GITHUB_OUTPUT
       shell: bash
 
     # Install dependencies (this needs to be a separate step from build for caching)

@@ -56,9 +56,9 @@ runs:
         TARGET_FRAMEWORK="${{ inputs.target_framework }}"
         PROJECT_PATH="$PROJECT_PATH"
 
-        echo "dotnet-restore=dotnet restore \$PROJECT_PATH --runtime ${{ inputs.runtime_version }} --configuration "$CONFIGURATION" -p:TargetFramework="$TARGET_FRAMEWORK"" >> $GITHUB_OUTPUT
-        echo "dotnet-build=dotnet build \$PROJECT_PATH --configuration "$CONFIGURATION" --no-restore --runtime "$RUNTIME" -p:TargetFramework="$TARGET_FRAMEWORK" -p:RocketModFixVersion=${{ steps.get-version.outputs.version }}" >> $GITHUB_OUTPUT
-        echo "dotnet-test=dotnet test \$PROJECT_PATH --configuration "$CONFIGURATION" --no-restore --no-build --runtime ${{ inputs.runtime_version }} -p:TargetFramework="$TARGET_FRAMEWORK"" >> $GITHUB_OUTPUT
+        echo "dotnet-restore=dotnet restore \$PROJECT_PATH --runtime ${{ inputs.runtime_version }} -p:Configuration="$CONFIGURATION" -p:TargetFramework="$TARGET_FRAMEWORK"" >> $GITHUB_OUTPUT
+        echo "dotnet-build=dotnet build \$PROJECT_PATH -p:Configuration="$CONFIGURATION" --no-restore --runtime "$RUNTIME" -p:TargetFramework="$TARGET_FRAMEWORK" -p:RocketModFixVersion=${{ steps.get-version.outputs.version }}" >> $GITHUB_OUTPUT
+        echo "dotnet-test=dotnet test \$PROJECT_PATH -p:Configuration="$CONFIGURATION" --no-restore --no-build --runtime ${{ inputs.runtime_version }} -p:TargetFramework="$TARGET_FRAMEWORK"" >> $GITHUB_OUTPUT
       shell: bash
 
     # Install dependencies (this needs to be a separate step from build for caching)

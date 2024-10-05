@@ -57,7 +57,7 @@ jobs:
         with:
           name: RocketModFix Release v${{ steps.project-build.outputs.version }}
           tag: ${{ steps.project-build.outputs.version }}
-          artifacts: "./Rocket.AutoInstaller/bin/Release/net461/linux-x64/Rocket.AutoInstaller/Rocket.AutoInstaller.Module.zip"
+          artifacts: "./Rocket.AutoInstaller/bin/Release/net461/linux-x64/Rocket.AutoInstaller/Rocket.AutoInstaller.zip"
           token: ${{ secrets.PAT }}
           prerelease: ${{ steps.project-build.outputs.is_prerelease }}
           allowUpdates: true

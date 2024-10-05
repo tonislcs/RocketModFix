@@ -49,8 +49,6 @@ public class Installer
             yield break;
         }
 
-        Console.WriteLine("aa: " + moduleAsset.BrowserDownloadUrl);
-
         CommandWindow.LogWarning($"Preparing to install: " +
                                  $"RocketModFix {latestRelease.TagName} Released: {latestRelease.PublishedAt}");
 
@@ -66,7 +64,6 @@ public class Installer
         }
 
         var rawData = request.downloadHandler.data;
-        File.WriteAllBytes(@"C:\Users\user\Downloads\Rocket.Unturned.Module\a.zip", rawData);
         var releaseEntries = GetReleaseEntries(rawData);
         byte[]? rocketModuleData = null;
         List<byte[]> rocketLibraries = [];

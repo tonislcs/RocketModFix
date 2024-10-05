@@ -22,6 +22,7 @@ You can still use old plugins without any changes/recompilation/updates.
 - [x] Reset changelog.
 - [x] For versioning use [SemVer][semver_url].
 - [x] Installation guides inside of the Rocket Unturned Module.
+- [x] Rocket.AutoInstaller to automaticaly install Rocket.
 - [x] Keep backward compatibility.
 	- [x] Test with RocketMod plugins that uses old RocketMod libraries, and make sure current changes doesn't break anything.
 	- [x] Test with most used Modules:
@@ -53,12 +54,29 @@ After plan is finished -> Add new plans, keep coding, and don't forget to approv
 
 ## Installation
 
+Now we have 2 different ways you can install Rocket, either `Standard Way` or `Auto-Installer`, select the one you like more, but we highly recommend to use `Auto-Installer`.
+
+### Standard Way
+
 1. **Stop the Server**: If your server is running, stop it.
 2. **Remove Old Rocket**: Delete the entire `Rocket.Unturned` folder located in `Modules` (if it exists).
 3. **Download the Latest RocketModFix**: Go to the [RocketModFix releases page](https://github.com/RocketModFix/RocketModFix/releases).
 4. **Access the Assets**: Open the "Assets" section if it's not already expanded.
 5. **Download the Module**: Click `Rocket.Unturned.Module.zip` to download the latest module.
 6. **Final**: Extract the downloaded archive, open the `Rocket.Unturned.Module` folder, and copy the `Rocket.Unturned` folder to `Modules` (copy the folder, not it's content, and if its asks to Replace the existing files then press to replace them).
+
+### Auto-Installer (new way)
+
+It's same as installing Rocket manually (standard way), however if we make an update you will receive it automatically, so you don't need to remove old Rocket, replace/delete files, etc.
+
+See more info [here](https://github.com/RocketModFix/RocketModFix/blob/master/Rocket.AutoInstaller/README.md) about it if you're interested how it work and what we're planning to do next with it.
+
+1. **Stop the Server**: If your server is running, stop it.
+2. **Remove Rocket** (if you still have it): Delete the entire `Rocket.Unturned` folder located in `Modules` (if it exists).
+3. **Download the Latest Rocket.AutoInstaller**: Go to the [RocketModFix releases page](https://github.com/RocketModFix/RocketModFix/releases).
+4. **Access the Assets**: Open the "Assets" section if it's not already expanded.
+5. **Download the Rocket.AutoInstaller**: Click `Rocket.AutoInstaller.zip` to download the latest module.
+6. **Final**: Extract the downloaded archive, open the `Rocket.AutoInstaller` folder, and copy the `Rocket.AutoInstaller` folder to `Modules` (copy the folder, not it's content, and if its asks to Replace the existing files then press to replace them).
 
 Contact in our discord if you have any problems. Just in case you can also read `Readme_EN.txt` or `Readme_RU.txt` inside of the installed Module.
 

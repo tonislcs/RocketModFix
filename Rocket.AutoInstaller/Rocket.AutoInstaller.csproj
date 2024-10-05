@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <SolutionDir>$([System.IO.Path]::GetFullPath($(MSBuildProjectDirectory)/../../))</SolutionDir>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)\..\props\SharedProjectProps.props"/>
+  
+  <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RocketModFix.UnityEngine.Redist" Version="2021.3.29.1">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="RocketModFix.Unturned.Redist.Server" Version="3.24.5.1">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.IO.Compression">
+      <HintPath>Module\RuntimeLibs\System.IO.Compression.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="RocketModModuleArtifacts" AfterTargets="PostBuildEvent">
+
+    <ItemGroup>
+      <RocketModFiles Include="$(OutDir)*Rocket*.dll"/>
+      <RocketModModuleFiles Include="Module/Rocket.AutoInstaller/*"/>
+      <RocketModInstallationGuides Include="Module/InstallationGuides/*.txt"/>
+      <RocketModRuntimeLibs Include="Module/RuntimeLibs/*.dll"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <RocketOutputDirectory>$(OutDir)Rocket.AutoInstaller/Rocket.AutoInstaller</RocketOutputDirectory>
+    </PropertyGroup>
+
+    <MakeDir Directories="$(RocketOutputDirectory)"/>
+
+    <Copy SourceFiles="@(RocketModInstallationGuides)" DestinationFolder="$(RocketOutputDirectory)\.."/>
+    <Copy SourceFiles="@(RocketModFiles)" DestinationFolder="$(RocketOutputDirectory)"/>
+    <Copy SourceFiles="@(RocketModModuleFiles)" DestinationFolder="$(RocketOutputDirectory)"/>
+    <Copy SourceFiles="@(RocketModRuntimeLibs)" DestinationFolder="$(RocketOutputDirectory)"/>
+
+  </Target>
+
+</Project>

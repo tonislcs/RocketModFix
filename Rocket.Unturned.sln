@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		props\SharedProjectProps.props = props\SharedProjectProps.props
 		.editorconfig = .editorconfig
 		README.md = README.md
+		CONTRIBUTING.md = CONTRIBUTING.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rocket.Core", "Rocket\Rocket.Core\Rocket.Core.csproj", "{06848B59-5792-4DDA-9F31-E06E70ABDF71}"

@@ -2,11 +2,12 @@
 
 ## RocketModFix
 
-The **RocketModFix** is a fork of RocketMod for Unturned maintained by the Unturned plugin devs, this fork don't have plans for any major changes to the RocketMod, only fixes and new features that doesn't break any backward compatibility with API.
+The **RocketModFix** is a fork of [LDM][ldm_github_repository] for Unturned maintained by the Unturned plugin devs, this fork don't have plans for any major changes to the RocketMod, only fixes and new features that doesn't break any backward compatibility, so you don't need to update your plugins.
 
 ## Compatibility
 
 You can still use old plugins without any changes/recompilation/updates.
+We're not planning to make any breaking changes with API.
 
 ## Our plan and what we're done
 
@@ -21,8 +22,8 @@ You can still use old plugins without any changes/recompilation/updates.
 - [x] Rocket.Unturned NuGet Package.
 - [x] Reset changelog.
 - [x] For versioning use [SemVer][semver_url].
-- [x] Installation guides inside of the Rocket Unturned Module.
-- [x] Rocket.AutoInstaller to automaticaly install Rocket.
+- [x] Installation guides inside the Rocket Unturned Module.
+- [x] Rocket.AutoInstaller to automatically install Rocket.
 - [x] Keep backward compatibility.
 	- [x] Test with RocketMod plugins that uses old RocketMod libraries, and make sure current changes doesn't break anything.
 	- [x] Test with most used Modules:
@@ -30,7 +31,7 @@ You can still use old plugins without any changes/recompilation/updates.
 		- [x] uScript.
 		- [x] OpenMod.
 - [ ] RocketMod Fixes:
-	- [x] Fix UnturnedPlayer.SteamProfile, current implementation cause so many lags (fixed, but still requires fixes). 
+	- [x] Fix UnturnedPlayer.SteamProfile, current implementation cause so many lags (fixed, but still requires fixes).
 	- [x] Fix UnturnedPlayerComponent is not being added and removed automatically.
 	- [x] /admin /unadmin doesn't work when use offline player (now it possible to use steam id of the offline player).
 	- [ ] Assembly Resolve fixes (don't spam with not found library or make a option to disable it, load all libraries at rocketmod start instead of searching for them only on OnAssemblyResolve)
@@ -39,8 +40,9 @@ You can still use old plugins without any changes/recompilation/updates.
 		- [ ] Fix /vanish.
 		- [x] Fix /god. (oxygen isn't fixed)
 		- [ ] Fix /p (not readable at all).
-	- [ ] Perfomance.
+	- [ ] Performance.
 - [x] New Features:
+	- [x] JSON file support (before it was only XML).
 	- [x] Commands:
 		- [x] /position /pos (current position of the player).
 		- [x] /tpwp (improved version of /tp wp).
@@ -67,7 +69,7 @@ Now we have 2 different ways you can install Rocket, either `Standard Way` or `A
 
 ### Auto-Installer (new way)
 
-It's same as installing Rocket manually (standard way), however if we make an update you will receive it automatically, so you don't need to remove old Rocket, replace/delete files, etc.
+It's same as installing Rocket manually (standard way), however if we make an update you will receive it automatically after you restart the server, so you don't need to remove old Rocket, replace/delete files, etc.
 
 See more info [here](https://github.com/RocketModFix/RocketModFix/blob/master/Rocket.AutoInstaller/README.md) about it if you're interested how it work and what we're planning to do next with it.
 
@@ -82,7 +84,7 @@ Contact in our discord if you have any problems. Just in case you can also read 
 
 ## Discord
 
-Feel free to join our [Discord Server][discordserver_url].
+Feel free to join our [Discord Server][discordserver_url], ask questions, talk, and have fun!
 
 ## We're used by
 
@@ -91,36 +93,8 @@ Feel free to join our [Discord Server][discordserver_url].
 If you also use RocketModFix, contact us, we will add a link to you!
 
 ## How to Contribute
-We're thrilled to have you here! Feel free to create pull requests (PRs) and open issues - your contributions are valuable to us!
 
-### Why We Use Issues
-Before you dive into making changes, consider creating an [issue][issues_url] or discussions on our [discord server][discordserver_url] first. Here's why:
-
-- Avoid Duplicate Work: Someone might already be working on a similar update. Checking issues prevents duplication of effort.
-- Collaborative Problem Solving: Other contributors might have valuable insights or alternative solutions. Discussing changes beforehand can lead to better implementations.
-- Save Your Time: Avoid working on updates that might not align with the project's direction. Consult with others to ensure your efforts are fruitful.
-
-### Guidelines for Contributors
-
-Follow these guidelines to make our work smoother and faster, otherwise your change might not be accepted:
-
-1. **Check for Compatibility**: 
-   - Does your change break backward compatibility? 
-   - If it does then your change might not accepted, keep it compatible with old versions.
-
-2. **Ensure Broad Usability**: 
-   - Will your changes work with other versions of Rocket or older versions, or if other Rocket for example [LDM][ldm_github_repository] installed but your edited version of RocketModFix is not installed?
-   - If not, your change may not be accepted as it could cause problems such as breaking changes.
-
-3. **Test Your Changes**:
-   - Have you tested your change locally or in a test environment?
-   - If not, test it to confirm it works as expected.
-
-4. **Keep Things Simple**:
-	- Do you keep things simple?
-	- If not, try to keep things simple, for example: "Don't try to make things/code unique, hard, complex, etc, use and do simple and working solutions for the issue, no need to show yourself as a hulk.".
-
-Keep these points in mind to help everyone use RocketModFix without issues.
+See here details [how to contribute][contributing].
 
 ## NuGet Packages
 
@@ -158,31 +132,22 @@ On the 2nd of June 2020 fr34kyn01535 requested the fork be rebranded to help dis
 
 [OpenMod][openmod_github_repository] for nuget packages ready-to-go actions and workflows.
 
+[discordserver_url]: https://discord.gg/z6VM7taWeG
+[contributing]: https://github.com/RocketModFix/RocketModFix/blob/master/CONTRIBUTING.md
 [keep_a_changelog_url]: https://keepachangelog.com/en/1.1.0/
 [semver_url]: https://semver.org/
-
 [rocketmodfix_logo]: https://raw.githubusercontent.com/RocketModFix/RocketModFix/master/resources/RocketModFix.png
-
-[issues_url]: https://github.com/RocketModFix/RocketModFix/issues
+[hosting_alkad]: https://hosting.alkad.org/
+[openmod_github_repository]: https://github.com/openmod/openmod
+[ldm_github_repository]: https://github.com/SmartlyDressedGames/Legally-Distinct-Missile
 
 [nuget_package_RocketModFix.Unturned.Redist]: https://www.nuget.org/packages/RocketModFix.Unturned.Redist
 [badge_RocketModFix.Unturned.Redist]: https://img.shields.io/nuget/v/RocketModFix.Unturned.Redist?label=RocketModFix.Unturned.Redist&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FRocketModFix.Unturned.Redist
-
 [nuget_package_RocketModFix.UnityEngine.Redist]: https://www.nuget.org/packages/RocketModFix.UnityEngine.Redist
 [badge_RocketModFix.UnityEngine.Redist]: https://img.shields.io/nuget/v/RocketModFix.UnityEngine.Redist?label=RocketModFix.UnityEngine.Redist&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FRocketModFix.UnityEngine.Redist
-
 [nuget_package_RocketModFix.Rocket.API]: https://www.nuget.org/packages/RocketModFix.Rocket.API
 [badge_RocketModFix.Rocket.API]: https://img.shields.io/nuget/v/RocketModFix.Rocket.API?label=RocketModFix.Rocket.API&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FRocketModFix.Rocket.API
-
 [nuget_package_RocketModFix.Rocket.Core]: https://www.nuget.org/packages/RocketModFix.Rocket.Core
 [badge_RocketModFix.Rocket.Core]: https://img.shields.io/nuget/v/RocketModFix.Rocket.Core?label=RocketModFix.Rocket.Core&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FRocketModFix.Rocket.Core
-
 [nuget_package_RocketModFix.Rocket.Unturned]: https://www.nuget.org/packages/RocketModFix.Rocket.Unturned
 [badge_RocketModFix.Rocket.Unturned]: https://img.shields.io/nuget/v/RocketModFix.Rocket.Unturned?label=RocketModFix.Rocket.Unturned&link=https%3A%2F%2Fwww.nuget.org%2Fpackages%2FRocketModFix.Rocket.Unturned
-
-[hosting_alkad]: https://hosting.alkad.org/
-
-[discordserver_url]: https://discord.gg/z6VM7taWeG 
-
-[openmod_github_repository]: https://github.com/openmod/openmod
-[ldm_github_repository]: https://github.com/SmartlyDressedGames/Legally-Distinct-Missile

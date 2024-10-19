@@ -1,0 +1,89 @@
+name: RocketModFix
+
+on:
+  create:
+    tags:
+      - "*"
+  push:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/RocketModFix.yaml'
+      - 'Rocket.AutoInstaller/**'
+      - 'Rocket/**'
+      - 'Rocket.Unturned/**'
+  pull_request:
+    paths:
+      - '.github/workflows/RocketModFix.yaml'
+      - 'Rocket.AutoInstaller/**'
+      - 'Rocket/**'
+      - 'Rocket.Unturned/**'
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v4
+        name: Setup .NET
+        with:
+          dotnet-version: 8.x
+
+      - name: Build Rocket.AutoInstaller
+        uses: ./.github/actions/project-build
+        id: auto-installer-build
+        with:
+          project_path: Rocket.AutoInstaller
+          nuget_key: ${{ secrets.NUGET_DEPLOY_KEY }}
+          nuget_push: false
+          github_token: ${{ secrets.PAT }}
+
+      - name: Install zip
+        run: sudo apt-get install zip
+
+      - name: Zip Rocket.AutoInstaller artifacts
+        run: "cd ./Rocket.AutoInstaller/bin/Release/net461/linux-x64/Rocket.AutoInstaller && zip -qq -r ./Rocket.AutoInstaller.zip *"
+
+      - name: Build Rocket.Unturned.Module
+        uses: ./.github/actions/project-build
+        id: unturned-module-build
+        with:
+          project_path: Rocket.Unturned
+          nuget_key: ${{ secrets.NUGET_DEPLOY_KEY }}
+          nuget_push: false
+          github_token: ${{ secrets.PAT }}
+
+      - name: Zip Rocket.Unturned artifacts
+        run: "cd ./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned && zip -qq -r ./Rocket.Unturned.Module.zip *"
+
+      - name: Upload Rocket.AutoInstaller
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rocket.AutoInstaller.zip
+          path: "./Rocket.AutoInstaller/bin/Release/net461/linux-x64/Rocket.AutoInstaller/Rocket.AutoInstaller.zip"
+          if-no-files-found: error
+
+      - name: Upload Rocket.Unturned.Module
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rocket.Unturned.Module.zip
+          path: "./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned/Rocket.Unturned.Module.zip"
+          if-no-files-found: error
+
+      - name: Create Release
+        if: github.event_name == 'create' && github.event.ref_type == 'tag'
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          name: RocketModFix Release v${{ steps.auto-installer-build.outputs.version }}
+          tag: ${{ steps.auto-installer-build.outputs.version }}
+          artifacts: |
+            ./Rocket.AutoInstaller/bin/Release/net461/linux-x64/Rocket.AutoInstaller/Rocket.AutoInstaller.zip
+            ./Rocket.Unturned/bin/Release/net461/linux-x64/Rocket.Unturned/Rocket.Unturned.Module.zip
+          token: ${{ secrets.PAT }}
+          prerelease: ${{ steps.auto-installer-build.outputs.is_prerelease }}
+          allowUpdates: true
+          draft: true

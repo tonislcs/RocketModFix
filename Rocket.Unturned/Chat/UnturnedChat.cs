@@ -166,7 +166,7 @@ namespace Rocket.Unturned.Chat
                 }
             }
         }
-        
+
         public static void Say(CSteamID CSteamID, string message, Color color)
         {
             Say(CSteamID, message, color, false);
